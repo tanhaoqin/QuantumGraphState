@@ -5,6 +5,7 @@ Created on Tue Oct 28 15:26:13 2014
 @author: Tan Hao Qin
 """
 
+#import gaussian_elimination
 import numpy as np
 
 
@@ -40,23 +41,26 @@ def generate_linear_systems(matA,matB):
             output[equationNumber,k] = matA[j,k]
             #Generating d-coefficients
             output[equationNumber,3*n+j] = matB[j,k]
-            
             #Generating c-coefficients
             for i in range(n):
                 output[equationNumber,2*n+i] = matA[i,j]*matB[i,k]
             #Generating b-coefficients
-    
+            if j==k:
+                output[equationNumber,n+j] = 1                
     return output
     
+def parse_result(matrix):
+    m,n = matrix.shape
+    k = m/4
+    for i in range(m):
+        matrix[i]
 
-    
+
             
-         
-            
-matA = np.matrix('0 1 0;1 0 1;0 1 0')
-matB = np.matrix('0 1 1;1 0 1;1 1 0')
+'''        
+matA = np.array([[0,1,0],[1,0,1],[0,1,0]])
+matB = np.array([[0,1,1],[1,0,1],[1,1,0]])
+matC = generate_linear_systems(matA,matB)
+print matC
+'''
 
-print matA.shape[0]
-print matB
-
-print generate_linear_systems(matA,matB)
